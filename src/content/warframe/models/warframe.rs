@@ -1,44 +1,28 @@
-use serde::{Deserialize, Serialize};
+use serde_derive::{Deserialize, Serialize};
+use crate::ability::Ability;
 
-#[derive(Debug, Serialize, Deserialize)]
+pub type Root = Vec<Warframe>;
+
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct Warframe {
-    #[serde(rename = "uniqueName")]
-    pub unique_name: String,
-
-    pub name: String,
-    pub description: String,
-
-    #[serde(rename = "longDescription")]
-    pub long_description: Option<String>,
-
-    #[serde(rename = "passiveDescription")]
-    pub passive_description: Option<String>,
-
-    #[serde(rename = "parentName")]
-    pub parent_name: String,
-
-    #[serde(rename = "productCategory")]
-    pub product_category: String,
-
-    #[serde(rename = "masteryReq")]
-    pub mastery_req: i32,
-
-    pub health: i32,
-    pub shield: i32,
-    pub armor: i32,
-    pub power: i32,
-    pub stamina: i32,
-
-    #[serde(rename = "sprintSpeed")]
-    pub sprint_speed: f64,
-
-    #[serde(rename = "codexSecret")]
+    pub abilities: Vec<Ability>,
+    pub armor: i64,
     pub codex_secret: bool,
-
-    #[serde(rename = "excludeFromCodex")]
+    pub description: String,
+    pub health: i64,
+    pub mastery_req: i64,
+    pub name: String,
+    pub parent_name: String,
+    pub power: i64,
+    pub product_category: String,
+    pub shield: i64,
+    pub sprint_speed: f64,
+    pub stamina: i64,
+    pub unique_name: String,
+    pub passive_description: Option<String>,
+    #[serde(default)]
+    pub exalted: Vec<String>,
+    pub long_description: Option<String>,
     pub exclude_from_codex: Option<bool>,
-
-    pub abilities: Vec<serde_json::Value>,
-
-    pub exalted: Option<Vec<serde_json::Value>>,
 }
