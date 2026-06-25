@@ -1,9 +1,8 @@
-use std::env::temp_dir;
-use std::{env, fs};
-use std::path::PathBuf;
 use crate::content::warframe::language_code::LanguageCode;
 use crate::meta::tools::{download, extract};
-use cortex::Format;
+use std::env::temp_dir;
+use std::path::PathBuf;
+use std::{env, fs};
 
 pub struct PublicExport {
     pub language_code: LanguageCode,
