@@ -1,7 +1,7 @@
-use std::collections::HashMap;
-use std::path::{Path, PathBuf};
-use std::fs;
 use serde_json::Value;
+use std::collections::HashMap;
+use std::fs;
+use std::path::{Path, PathBuf};
 
 pub struct NameIndex {
     entries: HashMap<String, String>,
@@ -45,7 +45,8 @@ impl NameIndex {
                 Err(_) => continue,
             };
 
-            let is_recipe = items.first()
+            let is_recipe = items
+                .first()
                 .and_then(|i| i.as_object())
                 .map(|o| o.contains_key("resultType") && !o.contains_key("name"))
                 .unwrap_or(false);
@@ -83,7 +84,8 @@ impl NameIndex {
                     None => continue,
                 };
 
-                let result_name = entries.get(result_type)
+                let result_name = entries
+                    .get(result_type)
                     .or_else(|| entries.get(&result_type.replace("/Lotus/StoreItems/", "/Lotus/")))
                     .or_else(|| entries.get(&result_type.replace("/Lotus/", "/Lotus/StoreItems/")))
                     .cloned();

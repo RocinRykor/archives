@@ -1,17 +1,17 @@
-pub mod language_code;
 pub mod export_json;
-pub mod models;
 pub mod index;
+pub mod language_code;
 pub mod listable;
+pub mod models;
 
-use std::fs;
-use std::path::Path;
-pub use models::*;
-pub use export_json::*;
-pub use language_code::*;
 use crate::index::NameIndex;
 use crate::listable::Listable;
 use crate::relic::Relic;
+pub use export_json::*;
+pub use language_code::*;
+pub use models::*;
+use std::fs;
+use std::path::Path;
 
 pub fn list_file(path: &Path, index: &NameIndex) -> Result<String, std::io::Error> {
     let stem = path.file_stem().unwrap().to_str().unwrap();
@@ -21,8 +21,8 @@ pub fn list_file(path: &Path, index: &NameIndex) -> Result<String, std::io::Erro
 
     match stem {
         "Relics" => {
-            let items: Vec<Relic> = serde_json::from_str(&contents)
-                .expect("failed to parse Relics");
+            let items: Vec<Relic> =
+                serde_json::from_str(&contents).expect("failed to parse Relics");
 
             // Deduplicate by name — keep only Bronze (Intact)
             let mut seen = std::collections::HashSet::new();

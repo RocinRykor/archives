@@ -1,3 +1,1 @@
-pub struct UnknownFormat {
-    
-}
+pub struct UnknownFormat {}

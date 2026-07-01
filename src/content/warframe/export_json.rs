@@ -1,5 +1,5 @@
-use std::path::Path;
 use cortex::primitives::JsonFile;
+use std::path::Path;
 
 #[derive(Debug)]
 pub enum ExportJsonError {
@@ -22,7 +22,9 @@ impl ExportJson {
     pub fn new(file: JsonFile) -> Result<ExportJson, ExportJsonError> {
         // Even pre-built files get validated
         file.parse().map_err(ExportJsonError::InvalidJson)?;
-        Ok(ExportJson { original_file: file })
+        Ok(ExportJson {
+            original_file: file,
+        })
     }
 
     pub fn from_path<P: AsRef<Path>>(path: P) -> Result<ExportJson, ExportJsonError> {
@@ -48,6 +50,8 @@ impl ExportJson {
         // Validate contents before handing back a usable struct
         file.parse().map_err(ExportJsonError::InvalidJson)?;
 
-        Ok(ExportJson { original_file: file })
+        Ok(ExportJson {
+            original_file: file,
+        })
     }
 }

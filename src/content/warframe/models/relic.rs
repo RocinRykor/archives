@@ -1,7 +1,7 @@
-use serde_derive::Deserialize;
-use serde_derive::Serialize;
 use crate::index::NameIndex;
 use crate::listable::Listable;
+use serde_derive::Deserialize;
+use serde_derive::Serialize;
 
 pub type Root = Vec<Relic>;
 
@@ -36,7 +36,8 @@ impl Listable for Relic {
         let mut rare = Vec::new();
 
         for reward in &self.relic_rewards {
-            let name = index.resolve(&reward.reward_name)
+            let name = index
+                .resolve(&reward.reward_name)
                 .unwrap_or(&reward.reward_name)
                 .to_string();
 
@@ -47,10 +48,10 @@ impl Listable for Relic {
             };
 
             match reward.rarity.as_str() {
-                "COMMON"   => common.push(entry),
+                "COMMON" => common.push(entry),
                 "UNCOMMON" => uncommon.push(entry),
-                "RARE"     => rare.push(entry),
-                _          => common.push(entry),
+                "RARE" => rare.push(entry),
+                _ => common.push(entry),
             }
         }
 

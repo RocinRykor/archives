@@ -3,7 +3,8 @@ use serde_derive::Serialize;
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct RailJack { // This is really a Veil Proxima mission, but ok
+pub struct RailJack {
+    // This is really a Veil Proxima mission, but ok
     pub nodes: Vec<Node>,
 }
 

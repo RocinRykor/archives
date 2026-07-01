@@ -8,8 +8,6 @@ pub fn download(url: &str, output_path: &str) -> Result<(), Box<dyn std::error::
 }
 
 pub fn extract(input_path: &str) -> Result<(), Box<dyn std::error::Error>> {
-    Command::new("7z")
-        .args(["x", input_path])
-        .status()?;
+    Command::new("7z").args(["x", input_path]).status()?;
     Ok(())
 }
